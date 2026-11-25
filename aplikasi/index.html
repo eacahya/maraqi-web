@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aplikasi Karya Kami</title>
+<meta name="description" content="Aplikasi Android untuk ilmu falak dan pembelajaran fisika dari UIN Sunan Gunung Djati Bandung: Marāqī, KAFFAH MR PRO, dan HarmoLab.">
+<style>
+  :root { --bg:#f8fafc; --surface:#fff; --line:#e2e8f0; --ink:#0f172a; --muted:#475569; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:17px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; }
+  img { max-width:100%; display:block; }
+  .wrap { max-width:1080px; margin:0 auto; padding:0 16px; }
+
+  .top { background:#0f172a; color:#f1f5f9; padding:52px 0 64px; }
+  .eyebrow { font-size:13px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:#94a3b8; }
+  h1 { font-size:clamp(34px,6vw,54px); line-height:1.08; letter-spacing:-.025em; margin:10px 0 14px; }
+  .top p { color:#cbd5e1; max-width:640px; margin:0; font-size:18px; }
+  .jump { display:flex; flex-wrap:wrap; gap:10px; margin-top:28px; }
+  .jump a { display:flex; align-items:center; gap:10px; padding:8px 16px 8px 8px; border:1px solid #334155; border-radius:999px; color:#f1f5f9; text-decoration:none; font-weight:700; font-size:15px; }
+  .jump a:hover { background:#1e293b; }
+  .jump img, .jump .mi { width:32px; height:32px; border-radius:9px; }
+
+  .stack { margin-top:-32px; display:grid; gap:28px; padding-bottom:48px; }
+  .app { background:var(--surface); border:1px solid var(--line); border-radius:28px; overflow:hidden; box-shadow:0 10px 30px rgba(15,23,42,.06); }
+  .band { padding:28px 28px 0; color:#fff; }
+  .band-in { display:grid; gap:24px; grid-template-columns:1fr; }
+  @media (min-width:860px){ .band-in { grid-template-columns:1.1fr 1fr; } }
+  .head { display:flex; gap:16px; align-items:center; }
+  .icon { width:72px; height:72px; border-radius:18px; flex:none; box-shadow:0 6px 16px rgba(0,0,0,.25); }
+  .mi { background:#0b1220; display:grid; place-items:center; border:2px solid #f59e0b; }
+  .mi svg { width:62%; height:62%; }
+  .app h2 { margin:0; font-size:30px; line-height:1.1; letter-spacing:-.02em; }
+  .cat { font-size:14px; opacity:.85; font-weight:600; }
+  .desc { margin:18px 0 0; font-size:17px; opacity:.95; }
+  .pills { display:flex; flex-wrap:wrap; gap:8px; margin:16px 0 0; }
+  .pill { font-size:13px; padding:4px 11px; border-radius:999px; background:rgba(255,255,255,.16); border:1px solid rgba(255,255,255,.28); }
+  .btns { display:flex; flex-wrap:wrap; gap:10px; margin:22px 0 28px; }
+  .btn { display:inline-flex; align-items:center; gap:9px; padding:12px 20px; border-radius:999px; font-weight:800; text-decoration:none; font-size:15.5px; }
+  .btn svg { width:20px; height:20px; }
+  .btn-play { background:#fff; color:#0f172a; }
+  .btn-play:hover { background:#f1f5f9; }
+  .btn-ghost { color:#fff; border:1px solid rgba(255,255,255,.45); }
+  .btn-ghost:hover { background:rgba(255,255,255,.12); }
+  .shots { display:flex; gap:12px; align-items:flex-end; justify-content:center; overflow:hidden; height:300px; }
+  .shots img { width:150px; border-radius:18px 18px 0 0; box-shadow:0 -6px 24px rgba(0,0,0,.25); }
+  .shots img:nth-child(2) { width:170px; }
+  @media (max-width:520px){ .shots { height:240px; } .shots img { width:118px; } .shots img:nth-child(2){ width:132px; } .shots img:nth-child(3){ display:none; } }
+
+  .body { padding:26px 28px 28px; }
+  .feats { display:grid; gap:12px 22px; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); margin:0; padding:0; list-style:none; }
+  .feats li { padding-left:30px; position:relative; font-size:15.5px; color:var(--muted); }
+  .feats li b { color:var(--ink); display:block; font-size:16px; }
+  .feats li::before { content:""; position:absolute; left:0; top:5px; width:18px; height:18px; border-radius:6px; background:var(--c); opacity:.9; }
+  .meta { display:flex; flex-wrap:wrap; gap:8px 20px; margin-top:20px; padding-top:16px; border-top:1px solid var(--line); font-size:14px; color:var(--muted); }
+  .meta b { color:var(--ink); }
+  .gal { display:flex; gap:10px; overflow-x:auto; margin-top:20px; padding-bottom:8px; scroll-snap-type:x mandatory; }
+  .gal img { height:280px; width:auto; border-radius:14px; border:1px solid var(--line); flex:none; scroll-snap-align:start; }
+
+  .maraqi { --c:#d97706; } .maraqi .band { background:linear-gradient(135deg,#0b1220,#1c2540); }
+  .kaffah { --c:#047857; } .kaffah .band { background:linear-gradient(135deg,#064e3b,#0f766e); }
+  .harmo  { --c:#2563eb; } .harmo .band  { background:linear-gradient(135deg,#1e40af,#0ea5e9); }
+
+  .about { background:var(--surface); border:1px solid var(--line); border-radius:24px; padding:26px 28px; margin-bottom:48px; }
+  .about h3 { margin:0 0 8px; font-size:22px; }
+  .about p { margin:0; color:var(--muted); }
+  footer { text-align:center; color:var(--muted); font-size:14px; padding:0 0 40px; }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="eyebrow">Prodi Pendidikan Fisika · UIN Sunan Gunung Djati Bandung</div>
+    <h1>Aplikasi untuk belajar falak dan fisika</h1>
+    <p>Tiga aplikasi Android gratis yang dikembangkan dari riset dan pengajaran: arah kiblat berbasis kitab, instrumen falak lengkap, dan laboratorium gerak harmonik di saku Anda.</p>
+    <nav class="jump" aria-label="Daftar aplikasi">
+      <a href="#maraqi"><span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg></span>Marāqī</a>
+      <a href="#kaffah"><img src="img/ikon-kaffah.png" alt="">KAFFAH MR PRO</a>
+      <a href="#harmolab"><img src="img/ikon-harmolab.png" alt="">HarmoLab</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap stack">
+
+  <!-- MARAQI -->
+  <article class="app maraqi" id="maraqi">
+    <div class="band"><div class="band-in">
+      <div>
+        <div class="head">
+          <div class="icon mi"><svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg></div>
+          <div><h2>Marāqī</h2><div class="cat">Kiblat Nusantara · Arah kiblat</div></div>
+        </div>
+        <p class="desc">Arah kiblat berbasis metode koin Syekh Nawawi al-Bantani dalam kitab <em>Marāqil ‘Ubūdiyyah</em>, dihitung presisi dengan trigonometri bola dan dapat diperiksa dengan bayangan matahari.</p>
+        <div class="pills"><span class="pill">Gratis</span><span class="pill">Tanpa iklan</span><span class="pill">Offline</span><span class="pill">ID · EN · AR</span></div>
+        <div class="btns">
+          <a class="btn btn-play" href="https://play.google.com/store/apps/details?id=com.ummutech.maraqi&amp;hl=id" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>Google Play</a>
+          <a class="btn btn-ghost" href="../" target="_blank" rel="noopener">Halaman lengkap</a>
+        </div>
+      </div>
+      <div class="shots" aria-hidden="true">
+        <img src="img/maraqi-light-3-penggaris.jpg" alt="">
+        <img src="img/maraqi-dark-1-kompas.jpg" alt="">
+        <img src="img/maraqi-light-5-matahari.jpg" alt="">
+      </div>
+    </div></div>
+    <div class="body">
+      <ul class="feats">
+        <li><b>Metode penggaris</b>Menggambar garis kiblat di lantai seperti metode koin dalam kitab, dengan angka simpangan untuk lokasi Anda.</li>
+        <li><b>Bayangan matahari</b>Kalibrasi utara sejati dari bayangan benda tegak, bebas gangguan magnet.</li>
+        <li><b>Kompas &amp; waktu bayangan kiblat</b>Penunjuk arah langsung dan jadwal harian saat bayangan mengarah ke kiblat.</li>
+        <li><b>Kajian kitab</b>Teks Arab, terjemahan, dan penjelasan geometris metode Syekh Nawawi.</li>
+      </ul>
+      <div class="meta"><span><b>&lt;0,13°</b> selisih dari acuan WGS84 (28 kota)</span><span><b>99,5%</b> validasi ahli falak</span><span>Penelitian Litapdimas Kemenag RI 2026</span></div>
+    </div>
+  </article>
+
+  <!-- KAFFAH -->
+  <article class="app kaffah" id="kaffah">
+    <div class="band"><div class="band-in">
+      <div>
+        <div class="head">
+          <img class="icon" src="img/ikon-kaffah.png" alt="Ikon KAFFAH MR PRO">
+          <div><h2>KAFFAH MR PRO</h2><div class="cat">Instrumen falak digital</div></div>
+        </div>
+        <p class="desc">Jadwal sholat, arah kiblat, rukyat hilal, hisab awal bulan, dan kalender Hijriah dalam satu aplikasi. Semua perhitungan berjalan di HP dan sudah diuji terhadap data resmi serta pengukuran lapangan.</p>
+        <div class="pills"><span class="pill">Gratis</span><span class="pill">Tanpa iklan</span><span class="pill">5 bahasa</span><span class="pill">Kriteria Kemenag</span></div>
+        <div class="btns">
+          <a class="btn btn-play" href="https://play.google.com/store/apps/details?id=id.ac.uinsgd.kaffah.mrpro&amp;hl=id" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>Google Play</a>
+        </div>
+      </div>
+      <div class="shots" aria-hidden="true">
+        <img src="img/kaffah-02_rashdu.jpg" alt="">
+        <img src="img/kaffah-01_jadwal.jpg" alt="">
+        <img src="img/kaffah-05_rukyat.jpg" alt="">
+      </div>
+    </div></div>
+    <div class="body">
+      <ul class="feats">
+        <li><b>Shalat</b>Jadwal kriteria Kemenag RI, koreksi ufuk, pengingat adzan, widget, PDF jadwal bulanan &amp; Imsakiyah, mode jam masjid.</li>
+        <li><b>Kiblat</b>Rashdul qiblat harian sampai detik, teodolit HP berbasis giroskop, cek arah masjid dari citra satelit, berita acara PDF.</li>
+        <li><b>Rukyat</b>Perkiraan posisi hilal pada kamera HP, kriteria visibilitas Odeh &amp; Yallop, laporan rukyat PDF.</li>
+        <li><b>Hisab</b>Awal bulan dengan Neo-MABIMS, Wujudul Hilal, IR 2-3-8, dan KHGT; kalender Masehi–Hijriah; gerhana; ephemeris.</li>
+      </ul>
+      <div class="gal" aria-label="Tangkapan layar KAFFAH MR PRO">
+        <img src="img/kaffah-03_satelit.jpg" alt="Cek arah masjid dari satelit" loading="lazy">
+        <img src="img/kaffah-04_kriteria.jpg" alt="Hisab awal bulan empat kriteria" loading="lazy">
+        <img src="img/kaffah-07_kalender.jpg" alt="Kalender Hijriah bulanan" loading="lazy">
+        <img src="img/kaffah-08_jam_masjid.jpg" alt="Mode jam masjid" loading="lazy">
+      </div>
+      <div class="meta"><span><b>Bahasa:</b> Indonesia, Inggris, Arab, Jepang, Mandarin</span><span><b>Pengembang:</b> Dr. Ea Cahya Septia Mahen, S.Pd., M.Si. &amp; H. Saepudin Rahmatullah, M.Si.</span><span>KAFFAH UIN SGD Bandung</span></div>
+    </div>
+  </article>
+
+  <!-- HARMOLAB -->
+  <article class="app harmo" id="harmolab">
+    <div class="band"><div class="band-in">
+      <div>
+        <div class="head">
+          <img class="icon" src="img/ikon-harmolab.png" alt="Ikon HarmoLab">
+          <div><h2>HarmoLab</h2><div class="cat">Media pembelajaran fisika · Gerak harmonik sederhana</div></div>
+        </div>
+        <p class="desc">Materi, simulasi, uji pemahaman, dan praktikum gerak harmonik sederhana. Sensor HP dipakai untuk eksperimen bandul dan pegas sungguhan, dengan tabel data dan grafik yang langsung jadi tanpa olah data manual.</p>
+        <div class="pills"><span class="pill">Gratis</span><span class="pill">Offline</span><span class="pill">ID · EN · AR</span><span class="pill">SMA &amp; perguruan tinggi</span></div>
+        <div class="btns">
+          <a class="btn btn-play" href="https://play.google.com/store/apps/details?id=id.ac.uinsgd.harmolab&amp;hl=id" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>Google Play</a>
+        </div>
+      </div>
+      <div class="shots" aria-hidden="true">
+        <img src="img/harmolab-02-materi-list.jpg" alt="">
+        <img src="img/harmolab-1-home.jpg" alt="">
+        <img src="img/harmolab-06-simulasi-bandul.jpg" alt="">
+      </div>
+    </div></div>
+    <div class="body">
+      <ul class="feats">
+        <li><b>Materi GHS</b>10 topik dari dasar GHS, energi, bandul, hukum Hooke, susunan pegas, sampai penerapan, plus peta konsep dan glosarium.</li>
+        <li><b>Simulasi</b>Bandul sederhana dan getaran pegas: ubah panjang tali, gravitasi, massa, dan konstanta pegas, lalu amati periodenya.</li>
+        <li><b>Praktikum sensor</b>Eksperimen bandul (giroskop) dan pegas (akselerometer) dengan HP; hasil bisa diunduh sebagai CSV.</li>
+        <li><b>Uji pemahaman &amp; kontrol laptop</b>Soal pilihan ganda dengan umpan balik, dan dasbor laptop untuk memantau praktikum.</li>
+      </ul>
+      <div class="gal" aria-label="Tangkapan layar HarmoLab">
+        <img src="img/harmolab-04-praktikum-menu.jpg" alt="Menu praktikum sensor" loading="lazy">
+        <img src="img/harmolab-08-praktikum-guide.jpg" alt="Panduan praktikum bandul" loading="lazy">
+        <img src="img/harmolab-05-latihan-soal.jpg" alt="Uji pemahaman" loading="lazy">
+      </div>
+      <div class="meta"><span><b>Pengembang:</b> Dr. Ea Cahya Septia Mahen, S.Pd., M.Si. &amp; Dr. Dindin Nasrudin, S.Pd., M.Pd., MM.</span><span>Prodi Pendidikan Fisika UIN SGD Bandung</span></div>
+    </div>
+  </article>
+
+  <section class="about">
+    <h3>Tentang pengembang</h3>
+    <p>Aplikasi-aplikasi ini dikembangkan oleh dosen Program Studi Pendidikan Fisika, Fakultas Tarbiyah dan Keguruan, UIN Sunan Gunung Djati Bandung, bersama Komunitas Astronomi dan Falak (KAFFAH). Semuanya gratis, tanpa akun, dan tidak mengirim data pribadi ke server.</p>
+  </section>
+</main>
+
+<footer>© 2026 · UIN Sunan Gunung Djati Bandung</footer>
+</body>
+</html>
